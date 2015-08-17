@@ -1,2 +1,2 @@
 # ravelin_challenge
-Dada scientist challenge from Ravelin Technology
+Data scientist challenge from Ravelin Technology
