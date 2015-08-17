@@ -11,7 +11,7 @@ Data scientist challenge from Ravelin Technology
 
 /forecasting.R A function which can forecast with a given date, given circumstance and given drivers_available
 
-/run.R, A script to run all the jobs
+/run.R, A script to connecto to computer
 
 TO DO:
 1. Run the script "data_pre_processing.R" to generate the report
