@@ -28,4 +28,4 @@ forecasting <- function(date = Sys.Date(), circ = "dry", drivers_available = 400
 # date :2014-02-25
 # circumstance : dry
 # drivers: 7980
-forecasting(date = as.Date("2014-02-25"), circ = "dry", drivers_available = 7980)
+# forecasting(date = as.Date("2014-02-25"), circ = "dry", drivers_available = 7980)

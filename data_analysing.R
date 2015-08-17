@@ -13,7 +13,7 @@ html = addTitle(html, value = "Report", 1, par.properties = parCenter())
 # add a title to the section
 html = addTitle( html, value = "Relations between variables:", 2 )
 
-# add a tittle for the following matrix
+# add a title for the following matrix
 html = addParagraph( html, value = "Correlation matrix", par.properties = parCenter() )
 
 # corrrelation matrix
@@ -21,6 +21,14 @@ matrix.cor <- cor(data[,.(date = as.numeric(date), orders, drivers_available)])
 
 # add a correlation matrix into html
 html = addFlexTable( html, vanilla.table(matrix.cor, add.rownames = TRUE), par.properties = parCenter() )
+
+
+# add a paragraphe
+html = addParagraph( html, value = "The table above shows that there is a relatively high correlation between 'date' and 'orders' and the
+                                    correlation between 'orders' and 'drivers_available' is not low. We assume that there might be a relationship
+                                    between 'date' and 'orders', 'drivers_available' and 'orders'. In order to make it more persuadable, we
+                                    display how they evoluate along each other as follows.",
+                     par.properties = parCenter() )
 
 
 # plot how orders evolute along time
@@ -34,6 +42,14 @@ html = addPlot( html,
                 width = 9, height = 7
                 )
 
+# add a paragraph
+html = addParagraph( html, value = "With the plot above, we can roughly estimate that a polynomial regression model can fit this dataset.
+                                    The curve is increasing slowly at the first beginning. After the July 2013, it starts growing significantly.
+                                    This way of growth looks like polynomial regression.
+                                    ",
+                     par.properties = parCenter() )
+
+
 # plot how drivers_available evolute along time
 p <- ggplot( data, aes(date, drivers_available)) +
   geom_line(colour = "blue") +
@@ -45,6 +61,12 @@ html = addPlot( html,
                 width = 9, height = 7
               )
 
+html = addParagraph( html, value = "Accoding to the plot above, we find out that 'drivers_available' keeps increasing along 'date'. If we
+                                    compare it with the plot representing the relation between 'orders' and 'date', we can approximately observe
+                                    that their variations are almost simultaneous. the variation of 'drivers_available' is smaller than the one
+                                    of 'orders'.
+                                    ",
+                     par.properties = parCenter() )
 
 # orders evolution along available drivers
 avg.dri <- data[, .(qty = mean(orders)), by = .(drivers_available)]
@@ -62,10 +84,21 @@ html = addPlot( html,
 )
 
 
+html = addParagraph( html, value = "This graph demonstrates the relation between 'orders' and 'drivers_available'. From this graph, it seems that
+                                    the relationship can be explained by a linear regression model or a rapidly growing polynomial regression.
+                                    ",
+                     par.properties = parCenter() )
 
 ########################### Tuning model ############################
 # add a title to the section
 html = addTitle( html, value = "Construction of prediction model:", 2 )
+
+html = addParagraph( html, value = "As what we have mentioned in the previous chapter, it seems that a polynomial regression can fit well.
+                                    So we start with a polynomial regression using 'date' and 'drivers_available' as independant varialbe,
+                                    and 'orders' as dependant variable.
+                                    ",
+                     par.properties = parCenter() )
+
 
 # predict with polynomial regression eand plot 
 lr <- lm(orders ~ as.numeric(date) + I((as.numeric(date))^2) +
